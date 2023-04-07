@@ -1,0 +1,18 @@
+names:
+- defect1
+- defect2
+- defect3
+- defect4
+- defect5
+- defect6
+- defect7
+nc: 7
+roboflow:
+  license: CC BY 4.0
+  project: pcb-defects
+  url: https://universe.roboflow.com/uni-4sdfm/pcb-defects/dataset/2
+  version: 2
+  workspace: uni-4sdfm
+test: ../test/images
+train: PCB-defects-2/train/images
+val: PCB-defects-2/valid/images

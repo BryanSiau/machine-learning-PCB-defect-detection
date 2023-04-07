@@ -3,7 +3,7 @@
 Validate a trained YOLOv5 model accuracy on a custom dataset
 
 Usage:
-    $ python path/to/val.py --weights yolov5s.pt --data coco128.yaml --img 640
+    $ python path/to/val.py --weights runs/train/yolov5s_results/weights/best.pt --data PCB-defects-2/data.yaml --img 640
 
 Usage - formats:
     $ python path/to/val.py --weights yolov5s.pt                 # PyTorch
@@ -91,13 +91,12 @@ def process_batch(detections, labels, iouv):
                 matches = matches[np.unique(matches[:, 0], return_index=True)[1]]
             correct[matches[:, 1].astype(int), i] = True
     return torch.tensor(correct, dtype=torch.bool, device=iouv.device)
-
-
+    
 @torch.no_grad()
 def run(
-        data,
-        weights=None,  # model.pt path(s)
-        batch_size=32,  # batch size
+        data = 'PCB-defects-2/data.yaml',
+        weights='runs/train/yolov5s_results/weights/best.pt',  # model.pt path(s)
+        batch_size=16,  # batch size
         imgsz=640,  # inference size (pixels)
         conf_thres=0.001,  # confidence threshold
         iou_thres=0.6,  # NMS IoU threshold
